@@ -1,38 +1,33 @@
-import React, { useEffect } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
+import React from "react";
+import GoogleMapReact from 'google-map-react';
 
-const icon = L.icon({
-  iconUrl: "./placeholder.png",
-  iconSize: [38, 38],
-});
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const position = [51.505, -0.09];
-
-
-export default function Map(props) {
-  const { selectPosition } = props;
-  const locationSelection = [selectPosition?.lat, selectPosition?.lon];
+export default function Map({center,zoom}){
+  const defaultProps = {
+    center: {
+      lat: 10.99835602,
+      lng: 77.01502627
+    },
+    zoom: 11
+  };
 
   return (
-    <MapContainer
-      center={position}
-      zoom={8}
-      style={{ width: "100%", height: "100%" }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=Qvxhgh0h70FrRWXCwxXj"
-      />
-      {selectPosition && (
-        <Marker position={locationSelection} icon={icon}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      )}
-     
-    </MapContainer>
+    // Important! Always set the container height explicitly
+    <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyDGArUEBa5ns09IA7nt7jP-xfNIUkToFts" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        />
+      </GoogleMapReact>
+    </div>
   );
 }
+
+//AIzaSyDGArUEBa5ns09IA7nt7jP-xfNIUkToFts

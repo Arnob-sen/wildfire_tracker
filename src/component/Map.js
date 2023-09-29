@@ -1,5 +1,6 @@
 import React from "react";
 import GoogleMapReact from 'google-map-react';
+import LocationMarker from "./LocationMarker";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -14,7 +15,7 @@ export default function Map({center,zoom}){
 
   return (
     // Important! Always set the container height explicitly
-    <div style={{ height: '100vh', width: '100%' }}>
+    <div className="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyDGArUEBa5ns09IA7nt7jP-xfNIUkToFts" }}
         defaultCenter={defaultProps.center}
@@ -25,6 +26,7 @@ export default function Map({center,zoom}){
           lng={30.337844}
           text="My Marker"
         />
+        <LocationMarker lat={defaultProps.center.lat} lng={defaultProps.center.lng}/>
       </GoogleMapReact>
     </div>
   );

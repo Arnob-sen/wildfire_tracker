@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Map from "./component/Map";
+import './App.css'
 
 function App() {
   
